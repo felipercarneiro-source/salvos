@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>O que eu ando salvando · Felipe</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@400;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap">
+<style>
+:root{
+  --paper:#EFEEE9; --paper2:#E4E2DA; --line:#D3D0C6; --card:#F7F6F2;
+  --ink:#17212B; --ink2:#5C6672; --ink3:#8A929C;
+  --ai:#24467C; --ai-soft:#DEE4F0;
+  --shu:#A93A27; --kohaku:#8C5F14; --matsu:#2F6455;
+  --shadow:0 1px 2px rgba(23,33,43,.06),0 6px 18px -12px rgba(23,33,43,.28);
+  --r:11px;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#121820; --paper2:#1A212A; --line:#2A333E; --card:#1B232C;
+    --ink:#E9E6DE; --ink2:#98A2AD; --ink3:#6E7883;
+    --ai:#8FB2E8; --ai-soft:#22344F;
+    --shu:#E28067; --kohaku:#D5A257; --matsu:#63B8A0;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px -14px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121820; --paper2:#1A212A; --line:#2A333E; --card:#1B232C;
+  --ink:#E9E6DE; --ink2:#98A2AD; --ink3:#6E7883;
+  --ai:#8FB2E8; --ai-soft:#22344F;
+  --shu:#E28067; --kohaku:#D5A257; --matsu:#63B8A0;
+  --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 22px -14px rgba(0,0,0,.7);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Zen Kaku Gothic New","Hiragino Sans",system-ui,sans-serif;
+  font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1060px;margin:0 auto;padding:0 20px 80px}
+header{padding:44px 0 26px;border-bottom:1px solid var(--line)}
+.kicker{font-size:11.5px;letter-spacing:.19em;text-transform:uppercase;color:var(--ink3);font-weight:700}
+h1{font-family:"Zen Old Mincho",Georgia,serif;font-weight:900;letter-spacing:-.02em;
+   font-size:clamp(30px,5vw,46px);margin:8px 0 0;line-height:1.08}
+.lede{margin:18px 0 0;max-width:62ch;font-size:16.5px;color:var(--ink2);text-wrap:pretty}
+.lede b{color:var(--ink);font-weight:700}
+.nota{margin:14px 0 0;max-width:70ch;font-size:13px;color:var(--ink3);line-height:1.6}
+.nota b{color:var(--ink2);font-weight:700}
+.stats{display:flex;gap:34px;margin-top:22px;flex-wrap:wrap}
+.stat b{display:block;font-family:"Zen Old Mincho",serif;font-size:34px;line-height:1}
+.stat span{font-size:12.5px;color:var(--ink3);letter-spacing:.04em}
+/* tabs */
+.tabs{display:flex;gap:9px;position:sticky;top:0;background:var(--paper);z-index:5;
+  border-bottom:1px solid var(--line);padding:12px 0 10px;margin-bottom:6px;flex-wrap:wrap}
+.tab{font:inherit;font-size:14px;font-weight:700;padding:9px 16px;border-radius:999px;
+  border:2px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.tab.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.tab .n{font-weight:400;opacity:.75;margin-left:4px}
+/* chips regiões */
+.chips{display:flex;gap:7px;flex-wrap:wrap;margin:14px 0 4px;align-items:center}
+.flab{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink3);font-weight:700;margin-right:2px}
+.chip{font:inherit;font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;
+  border:1px solid var(--line);background:var(--card);color:var(--ink2);cursor:pointer}
+.chip:hover{border-color:var(--ai);color:var(--ink)}
+.chip.on{border-color:var(--ai);background:var(--ai);color:#fff}
+.legend{margin:12px 0 18px;font-size:12.5px;color:var(--ink3)}
+.legend .sw{display:inline-block;width:10px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px}
+/* grid + cards (sistema congelado) */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-top:16px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+   padding:14px 15px 13px;box-shadow:var(--shadow);position:relative;
+   border-left:4px solid var(--line)}
+.c.pr1{border-left-color:#2F8A57;background:color-mix(in srgb,#3FA36A 22%,var(--card))}
+.c.duo{border-left-color:#24467C;background:color-mix(in srgb,#24467C 12%,var(--card))}
+.c.pr2{border-left-color:#D97A3E;background:color-mix(in srgb,#E8955C 26%,var(--card))}
+.c.pr4{border-left-color:#B98A1C;background:color-mix(in srgb,#C99C2E 30%,var(--card))}
+.c.casa{border-left-color:#A93A27;background:color-mix(in srgb,#A93A27 14%,var(--card))}
+.cn{font-family:"Zen Old Mincho",serif;font-size:19px;font-weight:800;line-height:1.2;
+    letter-spacing:-.01em;text-wrap:balance}
+.cn a{color:inherit;text-decoration:none}
+.cn a:hover{text-decoration:underline;text-decoration-color:var(--ai)}
+.casa .cn a{color:#A93A27}
+:root[data-theme="dark"] .casa .cn a,
+:root:not([data-theme="light"]) .casa .cn a{color:var(--shu)}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .casa .cn a{color:#A93A27}}
+.cloc{font-size:12.5px;color:var(--ink3);margin-top:5px}
+.cloc .t{color:var(--ink2);font-weight:700}
+.cesp{font-size:13.5px;color:var(--ink2);margin-top:7px;line-height:1.45}
+.who{margin-top:9px;font-size:12.5px;color:var(--ink2);
+     border-top:1px dashed var(--line);padding-top:8px}
+.who b{color:var(--ai);font-weight:700}
+.who .lbl{color:var(--ink3);font-weight:400}
+.plink{color:var(--ink3);text-decoration:none}
+.plink:hover{color:var(--ai);text-decoration:underline}
+/* fila */
+.fgrp{margin-top:22px}
+.fgrp h3{font-family:"Zen Old Mincho",serif;font-size:17px;margin:0 0 6px}
+.fgrp ul{margin:0;padding-left:18px}
+.fgrp li{margin:5px 0;color:var(--ink2)}
+.fgrp a{color:var(--ink);text-decoration:none;font-weight:500}
+.fgrp a:hover{text-decoration:underline;text-decoration-color:var(--ai)}
+.fby{color:var(--ink3);font-size:12.5px}
+.filanota{margin-top:14px;max-width:70ch;font-size:13px;color:var(--ink3)}
+footer{margin-top:48px;border-top:1px solid var(--line);padding-top:18px;
+  font-size:12.5px;color:var(--ink3);line-height:1.7}
+footer a{color:var(--ink2)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="kicker">Resumo vivo · atualizado em 9 set 2026</div>
+ <h1>O que eu ando salvando</h1>
+ <p class="lede">Meu Instagram salva mais do que restaurante. <b>Vistas que me fizeram parar o dedo</b> —
+ Brasil, Europa, Patagônia e até o Quirguistão — e <b>casas em que eu me hospedaria amanhã</b>.
+ Isto aqui é o resumo vivo disso: cresce a cada varredura dos salvos.</p>
+ <p class="nota"><b>Como ler:</b> cada card linka o post original, com o crédito de quem postou.
+ Nada aqui é publi meu — é o que eu salvei porque quis.</p>
+ <div class="stats">
+  <div class="stat"><b>44</b><span>vistas e lugares</span></div>
+  <div class="stat"><b>13</b><span>casas e refúgios</span></div>
+  <div class="stat"><b>18</b><span>na fila dos guias</span></div>
+ </div>
+</header>
+
+<nav class="tabs" id="tabs">
+ <button class="tab on" data-t="vistas">🏔 Vistas &amp; viagens <span class="n">44</span></button>
+ <button class="tab" data-t="casas">🏡 Casas &amp; refúgios <span class="n">13</span></button>
+ <button class="tab" data-t="fila">🍜 Na fila dos guias <span class="n">18</span></button>
+</nav>
+
+<section id="sec-vistas">
+ <div class="chips"><span class="flab">Região</span><button class="chip" data-reg="br">Brasil</button><button class="chip" data-reg="eur">Europa</button><button class="chip" data-reg="asia">Ásia e Oriente</button><button class="chip" data-reg="ame">Américas</button></div>
+ <div class="legend">A cor do card diz a região:
+  <span class="sw" style="background:#2F8A57"></span>Brasil
+  <span class="sw" style="background:#24467C"></span>Europa
+  <span class="sw" style="background:#D97A3E"></span>Ásia e Oriente
+  <span class="sw" style="background:#B98A1C"></span>Américas
+ </div>
+ <div class="grid" id="grid-vistas">
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DajSqBqNcNO/" target="_blank" rel="noopener">Lençóis Maranhenses</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Maranhão</div>
+<div class="cesp">As lagoas entre as dunas — o fotógrafo volta há 5 anos e nunca é a mesma paisagem</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@humbertobaddini</b> · <a class="plink" href="https://www.instagram.com/p/DajSqBqNcNO/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DYmyl6CNHS_/" target="_blank" rel="noopener">Santo Amaro do Maranhão</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Lençóis Maranhenses · MA</div>
+<div class="cesp">O lado menos batido dos Lençóis, no auge das chuvas — as lagoas cheias não duram o ano todo</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@pernambucanosporai</b> · <a class="plink" href="https://www.instagram.com/p/DYmyl6CNHS_/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/Dc_helohH8R/" target="_blank" rel="noopener">Caminho do Céu</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Serra da Canastra · MG</div>
+<div class="cesp">A estrada de terra no alto da serra, acima das nuvens — &#x27;o caminho mais bonito do Brasil&#x27; segundo quem foi</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@viagemverificada</b> · <a class="plink" href="https://www.instagram.com/p/Dc_helohH8R/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DXaBgfYjHWG/" target="_blank" rel="noopener">Cachoeira Castelhanos</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Serra da Canastra · MG</div>
+<div class="cesp">Queda gigante na região da represa de Peixoto — a Canastra além da parte famosa</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@psmundoafora</b> · <a class="plink" href="https://www.instagram.com/p/DXaBgfYjHWG/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DYlVdQrDZbI/" target="_blank" rel="noopener">Cachoeira do Buracão</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Chapada Diamantina · BA</div>
+<div class="cesp">O canyon fechado onde a água despenca dentro de um poço — se entra nadando</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@danielafilomeno</b> · <a class="plink" href="https://www.instagram.com/p/DYlVdQrDZbI/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DXmrUnJiTLz/" target="_blank" rel="noopener">Cachoeira da Pancada Grande</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Ituberá · BA</div>
+<div class="cesp">Parada de ouro no caminho Salvador → Barra Grande</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@barragrande24h</b> · <a class="plink" href="https://www.instagram.com/p/DXmrUnJiTLz/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DcCtgNkID_u/" target="_blank" rel="noopener">Cânions do Viana</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Piauí</div>
+<div class="cesp">Paredões esculpidos no coração do Piauí — quase ninguém conhece</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@gutoestradeiro</b> · <a class="plink" href="https://www.instagram.com/p/DcCtgNkID_u/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DaGi2iGMeYp/" target="_blank" rel="noopener">Cânion do Funil</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Bom Jardim da Serra · SC</div>
+<div class="cesp">Um dos cânions mais bonitos da serra catarinense</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@ricardoalessandre</b> · <a class="plink" href="https://www.instagram.com/p/DaGi2iGMeYp/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DZLZvnkxuvk/" target="_blank" rel="noopener">Cachoeira escondida de Joinville</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Joinville · SC</div>
+<div class="cesp">&#x27;Parece a Suíça, mas é Santa Catarina&#x27; — no meio da mata</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@santaebelacatarina</b> · <a class="plink" href="https://www.instagram.com/p/DZLZvnkxuvk/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/Dc8i8prBhE7/" target="_blank" rel="noopener">Poço do Céu</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Serrinha do Alambari · RJ</div>
+<div class="cesp">Poço de água transparente perto de Penedo — bate-volta possível de SP</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@oquesaberantesdeir</b> · <a class="plink" href="https://www.instagram.com/p/Dc8i8prBhE7/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DbB-DskBTK3/" target="_blank" rel="noopener">Cachoeira do Bracuí</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Bananal · SP</div>
+<div class="cesp">Vista de drone da queda na divisa SP–RJ</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@trilhandocomchiquinho</b> · <a class="plink" href="https://www.instagram.com/p/DbB-DskBTK3/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DWRexO9DJJS/" target="_blank" rel="noopener">Cachoeira à beira-mar de Paraty</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Paraty · RJ</div>
+<div class="cesp">Um dos cenários mais impressionantes do litoral — a água doce caindo perto do mar</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@maisgoias</b> · <a class="plink" href="https://www.instagram.com/p/DWRexO9DJJS/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DdCzCZgGCD2/" target="_blank" rel="noopener">Portal do Spinoza — Ibiti</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Serra de Ibitipoca · MG</div>
+<div class="cesp">O mirante do Ibiti Projeto no alto do Chapadinho — para sentir, depois da caminhada</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@ibitiprojeto</b> · <a class="plink" href="https://www.instagram.com/p/DdCzCZgGCD2/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/Dc07o1Nu4bS/" target="_blank" rel="noopener">Mirante do Copan</a></div>
+<div class="cloc"><span class="t">Brasil</span> · São Paulo · SP</div>
+<div class="cesp">A cobertura do Copan reabriu depois de anos fechada — o centro visto de cima</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@mavinho_acoroni</b> · <a class="plink" href="https://www.instagram.com/p/Dc07o1Nu4bS/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr1" data-reg="br">
+<div class="cn"><a href="https://www.instagram.com/p/DbQ8MH0CJ06/" target="_blank" rel="noopener">Iguassu Secret Falls</a></div>
+<div class="cloc"><span class="t">Brasil</span> · Foz do Iguaçu · PR</div>
+<div class="cesp">As trilhas menos óbvias do lado brasileiro das Cataratas</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@iguassusecretfalls</b> · <a class="plink" href="https://www.instagram.com/p/DbQ8MH0CJ06/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DdDek1LiM4a/" target="_blank" rel="noopener">Islândia fora do óbvio</a></div>
+<div class="cloc"><span class="t">Europa</span> · Islândia</div>
+<div class="cesp">Além de Skógafoss e do Golden Circle — os cantos subestimados da ilha</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@memoriesfromabroad_</b> · <a class="plink" href="https://www.instagram.com/p/DdDek1LiM4a/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DcUShexPJ40/" target="_blank" rel="noopener">Pôr do sol islandês</a></div>
+<div class="cloc"><span class="t">Europa</span> · Islândia</div>
+<div class="cesp">&#x27;Tem pôr do sol que parece mentira&#x27; — e o caminho para chegar lá saindo do Brasil</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@inspireaviajar_</b> · <a class="plink" href="https://www.instagram.com/p/DcUShexPJ40/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DaAovG4tzDs/" target="_blank" rel="noopener">Lago de Como — Civero Bridge</a></div>
+<div class="cloc"><span class="t">Europa</span> · Nesso · Itália</div>
+<div class="cesp">O melhor lugar para nadar no lago, longe do agito de Bellagio</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@darlingarireid</b> · <a class="plink" href="https://www.instagram.com/p/DaAovG4tzDs/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DcUXGVMiuR1/" target="_blank" rel="noopener">Toscana devagar</a></div>
+<div class="cloc"><span class="t">Europa</span> · Itália</div>
+<div class="cesp">O cartão-postal mais fotografado da Itália, visto sem pressa — fora da janela do carro</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@upserra_</b> · <a class="plink" href="https://www.instagram.com/p/DcUXGVMiuR1/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DZh4CBLt2-V/" target="_blank" rel="noopener">Lagazuoi</a></div>
+<div class="cloc"><span class="t">Europa</span> · Dolomitas · Itália</div>
+<div class="cesp">O mirante a 2.700 m onde o silêncio fala — teleférico a partir do passo Falzarego</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@lagazuoidolomiti</b> · <a class="plink" href="https://www.instagram.com/p/DZh4CBLt2-V/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DZYuUzvsaDz/" target="_blank" rel="noopener">O &#x27;Caribe da Europa&#x27;</a></div>
+<div class="cloc"><span class="t">Europa</span> · Itália</div>
+<div class="cesp">As praias italianas de água absurda que ninguém associa à Europa</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@viajafabricio</b> · <a class="plink" href="https://www.instagram.com/p/DZYuUzvsaDz/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DbolynOsBEb/" target="_blank" rel="noopener">Carrinhos do Monte</a></div>
+<div class="cloc"><span class="t">Europa</span> · Funchal · Madeira</div>
+<div class="cesp">A tradição centenária de descer as ladeiras de Funchal em cestos de vime</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@vistorajourney</b> · <a class="plink" href="https://www.instagram.com/p/DbolynOsBEb/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DY_6v6turIZ/" target="_blank" rel="noopener">Escócia bruta</a></div>
+<div class="cloc"><span class="t">Europa</span> · Highlands · Escócia</div>
+<div class="cesp">O som da natureza escocesa — vento, água e mais nada</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@grantb_adventures</b> · <a class="plink" href="https://www.instagram.com/p/DY_6v6turIZ/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DcQ0sDDDLev/" target="_blank" rel="noopener">Road trips da Europa</a></div>
+<div class="cloc"><span class="t">Europa</span> · vários países</div>
+<div class="cesp">North Coast 500 na Escócia, costa atlântica portuguesa e mais rotas para fazer uma vez na vida</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@hotelspt</b> · <a class="plink" href="https://www.instagram.com/p/DcQ0sDDDLev/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/Db_LkyqDO50/" target="_blank" rel="noopener">Os mesmos cenários, sem multidão</a></div>
+<div class="cloc"><span class="t">Europa</span> · vários países</div>
+<div class="cesp">Alternativas aos destinos lotados — mesma paisagem, metade do preço</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@hotelspt</b> · <a class="plink" href="https://www.instagram.com/p/Db_LkyqDO50/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DXUP7V3DKga/" target="_blank" rel="noopener">Reims em bate-volta</a></div>
+<div class="cloc"><span class="t">Europa</span> · Champagne · França</div>
+<div class="cesp">42 minutos de trem de Paris e você está na terra do champagne</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@grapechic</b> · <a class="plink" href="https://www.instagram.com/p/DXUP7V3DKga/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DcRt7-rBixT/" target="_blank" rel="noopener">Amsterdam no verão</a></div>
+<div class="cloc"><span class="t">Europa</span> · Holanda</div>
+<div class="cesp">A cidade vista do barco e da bicicleta, num curta de turista</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@karlahill</b> · <a class="plink" href="https://www.instagram.com/p/DcRt7-rBixT/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DXUhvxHjSDx/" target="_blank" rel="noopener">Haute Route de bike</a></div>
+<div class="cloc"><span class="t">Europa</span> · Chamonix → Zermatt · Suíça</div>
+<div class="cesp">Cristas acima de 2.500 m ligando Chamonix, Verbier e Zermatt — todo mundo fala, poucos pedalam</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@purebikingverbier</b> · <a class="plink" href="https://www.instagram.com/p/DXUhvxHjSDx/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DWZa2egAQ7c/" target="_blank" rel="noopener">Volta ao Mont Blanc de e-MTB</a></div>
+<div class="cloc"><span class="t">Europa</span> · França · Itália · Suíça</div>
+<div class="cesp">160 km, três países, 5.500 m de subida em quatro dias ao redor do maciço</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@57hours_adventures</b> · <a class="plink" href="https://www.instagram.com/p/DWZa2egAQ7c/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c duo" data-reg="eur">
+<div class="cn"><a href="https://www.instagram.com/p/DW4LoW7ADTi/" target="_blank" rel="noopener">Eclipse total — 12/08/2026</a></div>
+<div class="cloc"><span class="t">Europa</span> · norte da Espanha · Islândia</div>
+<div class="cesp">O Sol some por dois minutos — a Espanha e a Islândia estão na faixa da totalidade</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@notjournal.ai</b> · <a class="plink" href="https://www.instagram.com/p/DW4LoW7ADTi/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr2" data-reg="asia">
+<div class="cn"><a href="https://www.instagram.com/p/Dc9DIVxsB6J/" target="_blank" rel="noopener">Quirguistão — o lago</a></div>
+<div class="cloc"><span class="t">Ásia e Oriente</span> · Quirguistão</div>
+<div class="cesp">O lago alpino da expedição &#x27;Quirguistão Sem Limites&#x27; — um dos países mais fascinantes e menos visitados</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@viagens.fora.do.comum</b> · <a class="plink" href="https://www.instagram.com/p/Dc9DIVxsB6J/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr2" data-reg="asia">
+<div class="cn"><a href="https://www.instagram.com/p/DWyr58yjP4E/" target="_blank" rel="noopener">Quirguistão — as montanhas</a></div>
+<div class="cloc"><span class="t">Ásia e Oriente</span> · Quirguistão</div>
+<div class="cesp">&#x27;Quando foi a última vez que você se emocionou vendo uma paisagem?&#x27;</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@viagens.fora.do.comum</b> · <a class="plink" href="https://www.instagram.com/p/DWyr58yjP4E/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr2" data-reg="asia">
+<div class="cn"><a href="https://www.instagram.com/p/Dc1SOqzgUWV/" target="_blank" rel="noopener">Kyrgyzstan na bucket list</a></div>
+<div class="cloc"><span class="t">Ásia e Oriente</span> · Quirguistão</div>
+<div class="cesp">O país que precisa entrar na sua lista — cavalos, yurts e vales infinitos</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@catchagypsea</b> · <a class="plink" href="https://www.instagram.com/p/Dc1SOqzgUWV/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr2" data-reg="asia">
+<div class="cn"><a href="https://www.instagram.com/p/DX0V1R9Noyw/" target="_blank" rel="noopener">Balões da Capadócia</a></div>
+<div class="cloc"><span class="t">Ásia e Oriente</span> · Turquia</div>
+<div class="cesp">As formações rochosas e as cidades subterrâneas vistas do ar</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@soeletronica24h</b> · <a class="plink" href="https://www.instagram.com/p/DX0V1R9Noyw/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr2" data-reg="asia">
+<div class="cn"><a href="https://www.instagram.com/p/DaygxbkmuSA/" target="_blank" rel="noopener">Café na caverna vulcânica</a></div>
+<div class="cloc"><span class="t">Ásia e Oriente</span> · Yandangshan · China</div>
+<div class="cesp">O Cliff Café fica dentro de fendas de uma caverna vulcânica — chegar já é o passeio</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@notthesamo</b> · <a class="plink" href="https://www.instagram.com/p/DaygxbkmuSA/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DdCPO54GWNI/" target="_blank" rel="noopener">Altiplano</a></div>
+<div class="cloc"><span class="t">Américas</span> · Bolívia · Chile</div>
+<div class="cesp">Anos explorando o Altiplano — paisagens que não parecem deste planeta</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@clementlorentz</b> · <a class="plink" href="https://www.instagram.com/p/DdCPO54GWNI/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/Da_ZaRORV2I/" target="_blank" rel="noopener">Trekking Huayhuash</a></div>
+<div class="cloc"><span class="t">Américas</span> · Peru</div>
+<div class="cesp">A travessia de altitude mais linda do mundo — comparada ao Everest Base Camp</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@lebetel</b> · <a class="plink" href="https://www.instagram.com/p/Da_ZaRORV2I/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/Da6CGzyM5P4/" target="_blank" rel="noopener">Patagônia — Torres del Paine + El Chaltén</a></div>
+<div class="cloc"><span class="t">Américas</span> · Chile · Argentina</div>
+<div class="cesp">&#x27;As epic as Patagonia gets&#x27; — os dois lados da cordilheira num vídeo só</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@patagoniahero</b> · <a class="plink" href="https://www.instagram.com/p/Da6CGzyM5P4/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DctqaDVBmYL/" target="_blank" rel="noopener">A estrada para El Chaltén</a></div>
+<div class="cloc"><span class="t">Américas</span> · Patagônia · Argentina</div>
+<div class="cesp">O Fitz Roy crescendo no para-brisa — expedição de 3 semanas no campo de gelo</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@tylekki</b> · <a class="plink" href="https://www.instagram.com/p/DctqaDVBmYL/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DY76csnz7RS/" target="_blank" rel="noopener">Patagônia em 12 anos</a></div>
+<div class="cloc"><span class="t">Américas</span> · Patagônia</div>
+<div class="cesp">O francês que largou a França e fotografa a Patagônia há 12 anos</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@timothydhalleine</b> · <a class="plink" href="https://www.instagram.com/p/DY76csnz7RS/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DbZygDIO_4b/" target="_blank" rel="noopener">Little Beehive — Lake Louise</a></div>
+<div class="cloc"><span class="t">Américas</span> · Rockies · Canadá</div>
+<div class="cesp">Uma das trilhas de amanhecer mais bonitas das Montanhas Rochosas canadenses</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@angelaliggs</b> · <a class="plink" href="https://www.instagram.com/p/DbZygDIO_4b/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DZ4z5SSx6fb/" target="_blank" rel="noopener">Bryce Canyon a cavalo</a></div>
+<div class="cloc"><span class="t">Américas</span> · Utah · EUA</div>
+<div class="cesp">Passeio a cavalo dentro do cânion de agulhas de pedra — pouco brasileiro conhece</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@inspireaviajar_</b> · <a class="plink" href="https://www.instagram.com/p/DZ4z5SSx6fb/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DbjQvHov0ae/" target="_blank" rel="noopener">Mendoza → Chile de carro</a></div>
+<div class="cloc"><span class="t">Américas</span> · Argentina · Chile</div>
+<div class="cesp">A travessia dos Andes pela estrada — &#x27;o caminho mais incrível que já passei&#x27;</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@daricanela</b> · <a class="plink" href="https://www.instagram.com/p/DbjQvHov0ae/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c pr4" data-reg="ame">
+<div class="cn"><a href="https://www.instagram.com/p/DXrPA44kkH6/" target="_blank" rel="noopener">Aurora boreal da janela</a></div>
+<div class="cloc"><span class="t">Américas</span> · Alasca · EUA</div>
+<div class="cesp">A aurora registrada direto da janela de uma cabana</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@bradojornal</b> · <a class="plink" href="https://www.instagram.com/p/DXrPA44kkH6/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+ </div>
+</section>
+
+<section id="sec-casas" hidden>
+ <div class="legend" style="margin-top:16px">Casas para alugar, refúgios e projetos de arquitetura que eu salvei para uma próxima.</div>
+ <div class="grid">
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/Dc9ry9BRON-/" target="_blank" rel="noopener">Casa Barco</a></div>
+<div class="cloc"><span class="t">Ilhabela · SP</span></div>
+<div class="cesp">Premiada em arquitetura, uma das casas mais marcantes da ilha — para alugar</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@bnbguests</b> · <a class="plink" href="https://www.instagram.com/p/Dc9ry9BRON-/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/Dc4mPbfBlka/" target="_blank" rel="noopener">Reserva das Flechas</a></div>
+<div class="cloc"><span class="t">Ilhabela · SP</span></div>
+<div class="cesp">No condomínio ao norte da ilha — uma das experiências mais incríveis de Ilhabela</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@bnbguests</b> · <a class="plink" href="https://www.instagram.com/p/Dc4mPbfBlka/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DagIR6_M8Ad/" target="_blank" rel="noopener">Casa na Pacuíba</a></div>
+<div class="cloc"><span class="t">Ilhabela · SP</span></div>
+<div class="cesp">Térrea e moderna, com vista panorâmica, no condomínio Pacuíba</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@bnbguests</b> · <a class="plink" href="https://www.instagram.com/p/DagIR6_M8Ad/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DcgwL3hAyih/" target="_blank" rel="noopener">Tiny house Matakaa</a></div>
+<div class="cloc"><span class="t">Gonçalves · MG</span></div>
+<div class="cesp">Refúgio na montanha às 6 da manhã — reserva por Booking ou Airbnb</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@matakaa___goncalves</b> · <a class="plink" href="https://www.instagram.com/p/DcgwL3hAyih/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/Dc_-BVSSVt-/" target="_blank" rel="noopener">SPA nas montanhas</a></div>
+<div class="cloc"><span class="t">Campos do Jordão · SP</span></div>
+<div class="cesp">Hospedagem-SPA exclusiva para dois, nos &#x27;Alpes&#x27; de Campos</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@casaspacamposdojordao</b> · <a class="plink" href="https://www.instagram.com/p/Dc_-BVSSVt-/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DYPgHl7AN0j/" target="_blank" rel="noopener">Casa com SPA aquecido</a></div>
+<div class="cloc"><span class="t">Campos do Jordão · SP</span></div>
+<div class="cesp">Para dois hóspedes, com SPA aquecido no frio da serra</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@dicasedestinosbr</b> · <a class="plink" href="https://www.instagram.com/p/DYPgHl7AN0j/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DbdfvDcDlFR/" target="_blank" rel="noopener">Casa pé na areia</a></div>
+<div class="cloc"><span class="t">Picinguaba · Ubatuba · SP</span></div>
+<div class="cesp">De frente para o mar da vila de Picinguaba — deck de pôr do sol, trilha na mata até a vila</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@dicasedestinosbr</b> · <a class="plink" href="https://www.instagram.com/p/DbdfvDcDlFR/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DW4tCJsAH1c/" target="_blank" rel="noopener">Casarão em Delfinópolis</a></div>
+<div class="cloc"><span class="t">Delfinópolis · MG</span></div>
+<div class="cesp">Para juntar amigos ou família na porta da Canastra — piscina e natureza em volta</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@rolefamilia</b> · <a class="plink" href="https://www.instagram.com/p/DW4tCJsAH1c/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DXCH-__jJsF/" target="_blank" rel="noopener">Casa Han&#x27;ei</a></div>
+<div class="cloc"><span class="t">Piracaia · SP</span></div>
+<div class="cesp">Às margens da represa Jaguari, emoldurando a Serra do Lopo — projeto do Luciano Basso</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@lucianolbasso.arq</b> · <a class="plink" href="https://www.instagram.com/p/DXCH-__jJsF/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DW1cYnLDNH8/" target="_blank" rel="noopener">Residência K I R</a></div>
+<div class="cloc"><span class="t">serra</span></div>
+<div class="cesp">Entre montanhas, a arquitetura não impõe — se integra à topografia</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@fernandarubatino</b> · <a class="plink" href="https://www.instagram.com/p/DW1cYnLDNH8/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DbEDSjvAA02/" target="_blank" rel="noopener">Projeto DH</a></div>
+<div class="cloc"><span class="t">Mangaratiba · RJ</span></div>
+<div class="cesp">2.100 m² construídos na fazenda Porto Bello, de frente pro mar verde da Costa Verde</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@limaarquitetos.sp</b> · <a class="plink" href="https://www.instagram.com/p/DbEDSjvAA02/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DYmgpHWiBct/" target="_blank" rel="noopener">Villa na Toscana por US$ 198 mil</a></div>
+<div class="cloc"><span class="t">Toscana · Itália</span></div>
+<div class="cesp">Villa restaurada dentro de fazenda do século 18, no meio das colinas — pelo preço de um apê</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@luxury</b> · <a class="plink" href="https://www.instagram.com/p/DYmgpHWiBct/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+<div class="c casa">
+<div class="cn"><a href="https://www.instagram.com/p/DWC9YM4AJ1D/" target="_blank" rel="noopener">Hotel e vinícola Davo</a></div>
+<div class="cloc"><span class="t">Minas Gerais</span></div>
+<div class="cesp">Dormir na vinícola — restaurante Quinta Davo com o horizonte de vinhedo mineiro</div>
+<div class="who"><span class="lbl">salvo de</span> <b>@hotelevinicoladavo</b> · <a class="plink" href="https://www.instagram.com/p/DWC9YM4AJ1D/" target="_blank" rel="noopener">ver o post ↗</a></div>
+</div>
+ </div>
+</section>
+
+<section id="sec-fila" hidden>
+ <p class="filanota">Comida salva que ainda não entrou nos guias — São Paulo está de molho por enquanto,
+ Europa espera o guia nascer. Quando entrar, sai daqui.</p>
+<div class="fgrp"><h3>São Paulo</h3><ul><li><a href="https://www.instagram.com/p/DdEYhG2keP8/" target="_blank" rel="noopener">12 omakases de SP, pela Monique Balazs</a> <span class="fby">@monique.balazs</span></li>
+<li><a href="https://www.instagram.com/p/Db3--4ZHO-_/" target="_blank" rel="noopener">Onde comer no centro de SP</a> <span class="fby">@juliananegreti</span></li>
+<li><a href="https://www.instagram.com/p/DbrLUGTkWdv/" target="_blank" rel="noopener">Melhores comes e bebes de julho</a> <span class="fby">@pedroforato</span></li>
+<li><a href="https://www.instagram.com/p/Da-esGSkcZ-/" target="_blank" rel="noopener">Novos restaurantes de SP para zerar</a> <span class="fby">@tipsbygelly</span></li>
+<li><a href="https://www.instagram.com/p/Db1jI4yGSCm/" target="_blank" rel="noopener">Yamaga — o japonês &#x27;bom mesmo&#x27; da Liberdade</a> <span class="fby">@sushi_urbano</span></li>
+<li><a href="https://www.instagram.com/p/DcWh7vMkTlh/" target="_blank" rel="noopener">Onde comer na Liberdade</a> <span class="fby">@monique.balazs</span></li>
+<li><a href="https://www.instagram.com/p/Dbaq_1okSAr/" target="_blank" rel="noopener">15 lasanhas de SP</a> <span class="fby">@findandeat</span></li>
+<li><a href="https://www.instagram.com/p/DbeR7Z1jpe_/" target="_blank" rel="noopener">Onde comer bem em Campos do Jordão</a> <span class="fby">@tipsbygelly</span></li></ul></div>
+<div class="fgrp"><h3>Europa</h3><ul><li><a href="https://www.instagram.com/p/DbUEu2rIKfh/" target="_blank" rel="noopener">O momento de Madrid, pelo The Pig Journal</a> <span class="fby">@thepig.journal</span></li>
+<li><a href="https://www.instagram.com/p/DbnX3WSg057/" target="_blank" rel="noopener">Ruta de pintxos em Santutxu, Bilbao</a> <span class="fby">@bilbourbanfood</span></li>
+<li><a href="https://www.instagram.com/p/DbqJJ--A0tP/" target="_blank" rel="noopener">A tapa de polvo gigante de O Carballiño, Galícia</a> <span class="fby">@galicia.angibaldrich</span></li>
+<li><a href="https://www.instagram.com/p/DZ4cw6Qg5Yy/" target="_blank" rel="noopener">Crudi memoráveis em Milão</a> <span class="fby">@amilanopuoi</span></li>
+<li><a href="https://www.instagram.com/p/DaC-hLkusLF/" target="_blank" rel="noopener">Asador a 1h de Madrid, em Zamora</a> <span class="fby">@laubicacionperfecta</span></li>
+<li><a href="https://www.instagram.com/p/DZSyNAeMiuR/" target="_blank" rel="noopener">A paella do Borough Market, Londres</a> <span class="fby">@comendonasruas</span></li>
+<li><a href="https://www.instagram.com/p/DbjfuRllkZo/" target="_blank" rel="noopener">Espanha do Crítico Antigourmet para O Globo</a> <span class="fby">@ocritico.antigourmet</span></li>
+<li><a href="https://www.instagram.com/p/DaG2QfslsIf/" target="_blank" rel="noopener">Astúrias — sidra, mar e montanha</a> <span class="fby">@revistaunquiet</span></li></ul></div>
+<div class="fgrp"><h3>Rio de Janeiro</h3><ul><li><a href="https://www.instagram.com/p/DcwntgUkY4v/" target="_blank" rel="noopener">As escolhas gastronômicas de agosto da Ana Pimenta</a> <span class="fby">@ana.pimenta</span></li></ul></div>
+<div class="fgrp"><h3>Ilhabela</h3><ul><li><a href="https://www.instagram.com/p/DcGmVuLxdNh/" target="_blank" rel="noopener">Enfim Ostras + o outro imperdível da ilha</a> <span class="fby">@monique.balazs</span></li></ul></div>
+
+</section>
+
+<footer>
+ Guias já publicados: <a href="https://felipercarneiro-source.github.io/japao-guia/">Japão</a> ·
+ <a href="https://felipercarneiro-source.github.io/sp-guia/">São Paulo</a><br>
+ Curadoria pessoal de @feliperacarneiro. Os posts pertencem aos autores creditados em cada card.
+</footer>
+</div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+tabs.forEach(t=>t.addEventListener('click',()=>{
+  tabs.forEach(x=>x.classList.toggle('on',x===t));
+  ['vistas','casas','fila'].forEach(s=>{
+    document.getElementById('sec-'+s).hidden = (t.dataset.t!==s);
+  });
+}));
+let regOn=null;
+const chips=document.querySelectorAll('.chip');
+chips.forEach(ch=>ch.addEventListener('click',()=>{
+  regOn = (regOn===ch.dataset.reg)?null:ch.dataset.reg;
+  chips.forEach(x=>x.classList.toggle('on',x.dataset.reg===regOn));
+  document.querySelectorAll('#grid-vistas .c').forEach(c=>{
+    c.hidden = regOn!==null && c.dataset.reg!==regOn;
+  });
+}));
+</script>
+</body>
+</html>
